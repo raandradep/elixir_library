@@ -20,10 +20,6 @@ defimpl AuthorRepo, for: AuthorRepoImpl do
     repo.pid |> Mongo.find(@collection, criteria) |> Enum.to_list()
   end
 
-  def find_by_id(repo, id) do
-    repo.pid |> Mongo.find_one(@collection, %{"_id" => id})
-  end
-
 
   def update(repo, id,  %Author{} = map) do
     repo.pid |> Mongo.find_one_and_update(@collection, %{"_id" => id} , map)

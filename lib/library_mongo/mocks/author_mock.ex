@@ -32,6 +32,19 @@ defmodule AuthorMock do
     end
   end
 
+  @impl true
+  def handle_call({:update, id, %{name: name, lastname: lastname}}, _, {author_id, authors} = state) do
+    if author_id < id or id < 1 do
+      {:reply, nil, state}
+    else
+      new_id = id
+       new_user = %Author{_id: new_id, name: name, lastname: lastname}
+       authors = Map.put(authors, new_id, new_user)
+       state = {new_id, authors}
+       {:reply, new_user, state}
+    end
+  end
+
 end
 
 defimpl DbHandler, for: AuthorMock do
@@ -41,6 +54,10 @@ defimpl DbHandler, for: AuthorMock do
 
   def find(handler, filter) do
     GenServer.call(handler.pid, {:find, filter})
+  end
+
+  def update(handler, id, %{name: _, lastname: _} = map) do
+    GenServer.call(handler.pid, {:update, id, map})
   end
 
 end
