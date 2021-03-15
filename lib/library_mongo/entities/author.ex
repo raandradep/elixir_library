@@ -1,3 +1,3 @@
 defmodule Author do
-  defstruct [:name, :lastname]
+  defstruct [:_id, :name, :lastname]
 end

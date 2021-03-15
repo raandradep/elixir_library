@@ -1,10 +1,10 @@
 use Mix.Config
 
-config :library_mongo, LibraryMongo.Repo,
+config :library_mongo, MongoHandler,
   url: "mongodb://localhost:27017",
-  username: "root",
-  password: "example",
-  database: "admin",
+  username: "library_user",
+  password: "123456",
+  database: "library_db",
   pool_size: 10
 
 # We don't run a server during test. If one is required,

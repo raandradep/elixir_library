@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :library_mongo, LibraryMongo.Repo,
+config :library_mongo, MongoHandler,
   url: "mongodb://localhost:27017",
   username: "library_user",
   password: "123456",

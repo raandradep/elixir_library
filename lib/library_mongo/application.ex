@@ -5,9 +5,9 @@ defmodule LibraryMongo.Application do
 
   use Application
 
-  defp get_env(key) do
-    Application.get_env(:library_mongo, LibraryMongo.Repo)[key]
-  end
+  # defp get_env(key) do
+  #   Application.get_env(:library_mongo, LibraryMongo.Repo)[key]
+  # end
 
   def start(_type, _args) do
     children = [
@@ -19,7 +19,7 @@ defmodule LibraryMongo.Application do
       LibraryMongoWeb.Endpoint,
       # Start a worker by calling: LibraryMongo.Worker.start_link(arg)
       # {LibraryMongo.Worker, arg}
-      {Mongo, [name: :mongo, database: get_env(:database), username: get_env(:username), password: get_env(:password), pool_size: get_env(:pool_size)]}
+      #{Mongo, [name: :mongo, database: get_env(:database), username: get_env(:username), password: get_env(:password), pool_size: get_env(:pool_size)]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
