@@ -1,3 +1,3 @@
 defmodule Reader do
-  defstruct [:dni, :name, :lastname, :email]
+  defstruct [:_id, :dni, :name, :lastname, :email]
 end

@@ -1,14 +1,14 @@
-defmodule AuthorRepoImpl do
+defmodule BookRepoImpl do
   @enforce_keys [:pid]
   defstruct [:pid]
 
   def create(db_handler) do
-    %AuthorRepoImpl{pid: db_handler.db}
+    %BookRepoImpl{pid: db_handler.db}
   end
 end
 
-defimpl AuthorRepo, for: AuthorRepoImpl do
-  @collection "authors"
+defimpl BookRepo, for: BookRepoImpl do
+  @collection "book"
 
   def add(repo, map) do
     repo.pid |> Mongo.insert_one(@collection, map)
@@ -18,7 +18,7 @@ defimpl AuthorRepo, for: AuthorRepoImpl do
     repo.pid |> Mongo.find(@collection, criteria) |> Enum.to_list()
   end
 
-  def update(repo, id, %Author{} = map) do
+  def update(repo, id, %Book{} = map) do
     repo.pid |> Mongo.find_one_and_update(@collection, %{"_id" => id}, map)
   end
 

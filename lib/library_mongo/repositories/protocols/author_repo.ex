@@ -1,13 +1,9 @@
 defprotocol AuthorRepo do
-
-
   def add(repo, map)
 
   def find(repo, criteria \\ %{})
 
   def update(repo, id, map)
 
-  #def delete(repo, id)
-
-
+  def delete(repo, id)
 end
